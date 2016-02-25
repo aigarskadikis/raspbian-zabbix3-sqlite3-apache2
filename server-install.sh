@@ -69,10 +69,10 @@ mkdir -p /var/www/html/zabbix
 cd ~/zabbix-*/frontends/php
 cp -a . /var/www/html/zabbix
 
-#set apache user to be owner of frontent
+#set www-data user to be owner of zabbix frontend
 chown -R www-data:www-data /var/www/html/zabbix
 
-#set apache user as member of zabbix group
+#add www-data user of zabbix group
 adduser www-data zabbix
 
 #set minimal apatche php configuration 
