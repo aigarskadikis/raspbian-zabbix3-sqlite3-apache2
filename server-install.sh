@@ -42,7 +42,7 @@ sqlite3 /var/lib/sqlite/zabbix.db <images.sql
 sqlite3 /var/lib/sqlite/zabbix.db <data.sql
 
 #set permissions to database
-chown -R zabbix:zabbix /var/lib/sqlite/
+chown -R zabbix:zabbix /var/lib/sqlite
 chmod 774 -R /var/lib/sqlite
 chmod 664 /var/lib/sqlite/zabbix.db
 
@@ -51,8 +51,8 @@ cd ~/zabbix-*/
 ./configure --enable-server --enable-agent --with-sqlite3 --with-libcurl --with-libxml2 --with-ssh2 --with-net-snmp --with-openipmi --with-jabber
 make install
 
-#install zabbix server and agent service
-cp ~/zabbix-*/misc/init.d/debian/* /etc/init.d/
+#install zabbix server and zabbix agent service
+cp ~/zabbix-*/misc/init.d/debian/* /etc/init.d
 update-rc.d zabbix-server defaults
 update-rc.d zabbix-agent defaults
 
@@ -66,8 +66,8 @@ sed -i "s/^DBName=.*$/DBName=\/var\/lib\/sqlite\/zabbix.db/" /usr/local/etc/zabb
 #install web frontend
 apt-get install apache2 apache2-dev -y
 mkdir -p /var/www/html/zabbix
-cd ~/zabbix-*/frontends/php/
-cp -a . /var/www/html/zabbix/
+cd ~/zabbix-*/frontends/php
+cp -a . /var/www/html/zabbix
 
 #set apache user to be owner of frontent
 chown -R www-data:www-data /var/www/html/zabbix
@@ -109,5 +109,5 @@ EOF
 #restart zabbix server
 /etc/init.d/zabbix-server restart
 
-#restart apatche
+#restart apache
 /etc/init.d/apache2 restart
