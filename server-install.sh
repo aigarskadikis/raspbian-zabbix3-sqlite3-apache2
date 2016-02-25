@@ -34,7 +34,7 @@ chown -R zabbix:zabbix /var/zabbix
 #extract zabbix source
 tar -vzxf zabbix-*.tar.gz -C ~
 
-#create basic database
+#create basic database structure
 mkdir -p /var/lib/sqlite
 cd ~/zabbix-*/database/sqlite3
 sqlite3 /var/lib/sqlite/zabbix.db <schema.sql
@@ -46,7 +46,7 @@ chown -R zabbix:zabbix /var/lib/sqlite
 chmod 774 -R /var/lib/sqlite
 chmod 664 /var/lib/sqlite/zabbix.db
 
-#configure, compile and install zabbix server and agent 
+#configure, compile and install zabbix server and zabbix agent 
 cd ~/zabbix-*/
 ./configure --enable-server --enable-agent --with-sqlite3 --with-libcurl --with-libxml2 --with-ssh2 --with-net-snmp --with-openipmi --with-jabber
 make install
