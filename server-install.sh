@@ -3,7 +3,7 @@
 #sudo raspi-config -> extend partition -> reboot
 #sudo su
 #apt-get update -y && apt-get upgrade -y && apt-get install git -y
-#git clone https://github.com/catonrug/raspbian-zabbix-3-sqlite3.git && cd raspbian-zabbix-3-sqlite3 && chmod +x agent-install.sh server-install.sh
+#git clone https://github.com/catonrug/raspbian-zabbix3-sqlite3-apache2.git && cd raspbian-zabbix3-sqlite3-apache2 && chmod +x agent-install.sh server-install.sh
 #./server-install.sh
 
 #update repositories and upgrade system
@@ -108,6 +108,9 @@ EOF
 
 #restart zabbix server
 /etc/init.d/zabbix-server restart
+
+#start zabbix agent
+/etc/init.d/zabbix-agent start
 
 #restart apache
 /etc/init.d/apache2 restart
